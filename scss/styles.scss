@@ -1,0 +1,119 @@
+// $primary: #041725;
+// $primaryLight: hsla(200, 100%, 40%, 0.2);
+// $accent: hsla(210, 90%, 80%, 0.9);
+// $accentLight: #9bcfe4;
+
+
+$primary: #262626;
+$primaryLight: #868686;
+$accent: #FF674D;
+$accentLight: rgb(250, 156, 129);
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  overflow: hidden; 
+  font-family: 'Montserrat', sans-serif;
+  background: $primary;
+}
+#inputs{
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .main__block--top, .main__block--bottom{
+    p{
+      font-size: 34px;
+      color: $accent;
+      text-shadow: $accent 0px 1px 2px;
+      margin: 30px 0 10px 0 ;
+    }
+    button, input{
+      padding: 9px;
+      background: $accentLight;
+      outline: none;
+      border: none;
+      color: $primary;
+      margin: 15px 30px;
+      border-radius: 10px;
+      box-shadow: $accentLight 0px 5px 20px 1px;
+    }
+    input{
+      ::placeholder{
+        color: $accentLight;
+        opacity: 0.4;
+      }
+    }
+    button{
+      cursor: pointer;      
+      width: 60px;
+    }
+  }
+}
+
+
+.decoration{
+    $orb-size: 120px;
+    $particle-size: 2.4px;
+    $time: 14s; 
+    $base-hue: 355; 
+    $total: 331; // total particles
+
+    .wrap {
+      top: 74%;
+      left: 80%;
+      width: 0; 
+      height: 0; 
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      animation: rotate $time infinite linear; // rotate orb
+      position: absolute;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotateY(360deg) rotateX(360deg);
+      }
+    }
+
+    .c {
+      height: $particle-size;
+      border-radius: 50%;
+      opacity: 0; 
+      position: absolute;
+      width: $particle-size;
+    }
+   @for $i from 1 through $total {
+      $z: (random(360) * 1deg); // random angle to rotateZ
+      $y: (random(360) * 1deg); // random to rotateX
+      $hue: ((60/$total * $i) + $base-hue); // set hue
+
+    .c:nth-child(#{$i}){ // grab the nth particle
+      animation: orbit#{$i} $time infinite;
+      animation-delay: ($i * .01s); 
+      background-color: hsla($hue, 100%, 65%, 0.8);
+    }
+
+    @keyframes orbit#{$i}{ 
+      20% {
+        opacity: 1; // fade in
+      }
+      30% {
+        transform: rotateZ(-$z) rotateY($y) translateX($orb-size) rotateZ($z); // form orb
+      }
+      80% {
+        transform: rotateZ(-$z) rotateY($y) translateX($orb-size) rotateZ($z); // hold orb state 30-80
+        opacity: 1; // hold opacity 20-80
+      }
+      100% {
+        transform: rotateZ(-$z) rotateY($y) translateX( ($orb-size * 3) ) rotateZ($z); // translateX * 3
+      }
+    }
+  }    
+}

@@ -1,13 +1,13 @@
-// $primary: #041725;
-// $primaryLight: hsla(200, 100%, 40%, 0.2);
-// $accent: hsla(210, 90%, 80%, 0.9);
-// $accentLight: #9bcfe4;
+$primary: #041725;
+$primaryLight: hsla(200, 100%, 40%, 0.2);
+$accent: hsla(210, 90%, 80%, 0.9);
+$accentLight: #9bcfe4;
 
 
-$primary: #262626;
-$primaryLight: #868686;
-$accent: #FF674D;
-$accentLight: rgb(250, 156, 129);
+// $primary: #262626;
+// $primaryLight: #868686;
+// $accent: #FF674D;
+// $accentLight: rgb(250, 156, 129);
 
 
 *{
@@ -19,6 +19,7 @@ body {
   overflow: hidden; 
   font-family: 'Montserrat', sans-serif;
   background: $primary;
+  font-weight: 800;
 }
 #inputs{
   position: absolute;
